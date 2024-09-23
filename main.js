@@ -1,7 +1,10 @@
 import { run } from './gemini'
+import markdownIt from 'markdown-it'
 
 const conversationBoxEl = document.querySelector('.coversation-box')
 const promptInputEl = document.getElementById('prompt')
+
+const md = markdownIt()
 
 const renderConversation = (request, response) => {
   const conversation = document.createElement('div')
@@ -29,7 +32,9 @@ const renderConversation = (request, response) => {
       </div>
       <div class="flex w-full flex-row items-center justify-between gap-2">
         <label class="flex-1">Bot</label>
-        <div class="flex-[10] p-2 border border-gray-300 rounded-lg min-h-12 response">${response}</div>
+        <div class="flex-[10] p-2 border border-gray-300 rounded-lg min-h-12 response">${md.render(
+          response
+        )}</div>
       </div>
     </div>
   `
